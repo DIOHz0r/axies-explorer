@@ -1,19 +1,19 @@
 chrome.runtime.onInstalled.addListener(function () {
-    console.log('estoy instalado')
     getOptions((response) => {
         if (Object.keys(response).length === 0) {
             resetOptions();
         }
     });
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-        chrome.declarativeContent.onPageChanged.addRules([{
-            conditions: [new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: {hostEquals: 'axieinfinity.com'},
-            })
-            ],
-            actions: [new chrome.declarativeContent.ShowPageAction()]
-        },
-        ]);
+    chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+        if (changeInfo.status === 'complete' && tab.url.match(/axieinfinity\.com/)) {
+            pageAction.show(tabId)
+        }
+    });
+    chrome.tabs.onCreated.addListener(function (tabId) {
+        console.log('created')
+        if (tab.url && tab.url.match(/axieinfinity\.com/)) {
+            pageAction.show(tabId)
+        }
     });
 });
 

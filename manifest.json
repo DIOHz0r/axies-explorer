@@ -19,7 +19,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://marketplace.axieinfinity.com/*"
+        "https://marketplace.axieinfinity.com/*"
       ],
       "js": [
         "options.js",
@@ -31,7 +31,7 @@
   "background": {
     "scripts": [
       "options.js",
-      "vendor/web3.min.js",
+      "lib/web3.min.js",
       "background.js"
     ]
   },
@@ -40,7 +40,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com"
+      "id": "{f99001b8-444e-4ea8-8235-a59313ed4802}"
     }
   }
 }
